@@ -1,4 +1,4 @@
-# 该项目是mybatisplus学习的项目
+# 该项目是mybatisplus单独学习的项目
 
 ## 参考链接:
 
@@ -26,3 +26,11 @@
     <version>3.5.3.1</version>
 </dependency>
 ```
+
+## 额外使用的插件:
+
+[Hutool](https://hutool.cn/)
+
+[Swagger](https://swagger.io/)
+
+[IDEA插件MyBatisPlus](https://plugins.jetbrains.com/plugin/12670-mybatisplus)
