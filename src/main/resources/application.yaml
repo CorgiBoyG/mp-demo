@@ -1,0 +1,47 @@
+spring:
+  #数据库连接信息
+  datasource:
+    url: jdbc:mysql://localhost:3306/mp?rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+logging:
+  level:
+    com.itheima: debug
+  pattern:
+    dateformat: HH:mm:ss
+#mybatis:
+# Mapper.xml文件地址 默认值
+#  mapper-locations: classpath*:mapper/*.xml
+mybatis-plus:
+  # 别名扫描包
+  type-aliases-package: com.itheima.mp.domain.po
+  global-config:
+    db-config:
+      # id全局生成方式 assign_id雪花算法生成
+      id-type: auto
+      logic-delete-field: deleted # 配置逻辑删除字段
+  #      update-strategy: not_null # 更新策略: 只更新非空字段
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    # log文件
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 是否开启下划线和驼峰的映射
+    map-underscore-to-camel-case: true
+    # 是否开启二级缓存
+    cache-enabled: false
+knife4j:
+  enable: true
+  openapi:
+    title: 用户管理接口文档
+    description: "用户管理接口文档"
+    email: zhanghuyi@itcast.cn
+    concat: 虎哥
+    url: https://www.itcast.cn
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.itheima.mp.controller

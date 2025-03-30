@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mp.mapper.UserMapper">
+    <select id="queryUserByIds" resultType="com.itheima.mp.domain.po.User">
+        SELECT *
+        FROM user
+        <if test="ids != null">
+            WHERE id IN
+            <foreach collection="ids" open="(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </if>
+        LIMIT 10
+    </select>
+
+    <update id="updateBalanceByIds">
+        UPDATE user
+        SET balance = balance - #{amount} ${ew.customSqlSegment}
+    </update>
+    <select id="queryUsers1" resultType="com.itheima.mp.domain.po.User">
+        select *
+        from user ${ew.customSqlSegment}
+    </select>
+
+    <select id="queryUserByIdAndAddr" resultType="com.itheima.mp.domain.po.User">
+        SELECT *
+        FROM user u
+        INNER JOIN address a ON u.id = a.user_id
+        WHERE u.id
+        <foreach collection="ids" separator="," item="id" open="IN (" close=")">
+            #{id}
+        </foreach>
+        AND a.city = #{city}
+    </select>
+
+    <select id="queryUserByWrapper" resultType="com.itheima.mp.domain.po.User">
+        SELECT *
+        FROM user u
+                 INNER JOIN address a ON u.id = a.user_id ${ew.customSqlSegment}
+    </select>
+</mapper>
